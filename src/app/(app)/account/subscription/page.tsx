@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useSearchParams, useRouter } from 'next/navigation'
 import type { Profile } from '@/types/database'
@@ -34,7 +34,7 @@ const PLANS = [
   },
 ]
 
-export default function SubscriptionPage() {
+function SubscriptionContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [profile, setProfile] = useState<Profile | null>(null)
@@ -220,5 +220,17 @@ export default function SubscriptionPage() {
         </p>
       </div>
     </main>
+  )
+}
+
+export default function SubscriptionPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full animate-spin" />
+      </main>
+    }>
+      <SubscriptionContent />
+    </Suspense>
   )
 }
