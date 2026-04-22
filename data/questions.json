@@ -1,0 +1,44 @@
+[
+  {
+    "source_question_number": 1,
+    "question_text_kw": "Ikinyabiziga cyose cyangwa ibinyabiziga bigenda bigomba kugira:",
+    "option_a_kw": "Umuyobozi",
+    "option_b_kw": "Umuherekeza",
+    "option_c_kw": "A na B ni ibisubizo by'ukuri",
+    "option_d_kw": "Nta gisubizo cy'ukuri kirimo",
+    "correct_answer": "a",
+    "explanation_kw": "Buri kinyabiziga kigomba kugira umuyobozi wacyo.",
+    "category": "driver_responsibilities",
+    "difficulty": 1,
+    "has_image": false,
+    "is_active": true
+  },
+  {
+    "source_question_number": 2,
+    "question_text_kw": "Ijambo 'akayira' bivuga inzira nyabagendwa ifunganye yagenewe gusa:",
+    "option_a_kw": "Abanyamaguru",
+    "option_b_kw": "Ibinyabiziga bigendera ku biziga bibiri",
+    "option_c_kw": "A na B ni ibisubizo by'ukuri",
+    "option_d_kw": "Nta gisubizo cy'ukuri kirimo",
+    "correct_answer": "c",
+    "explanation_kw": "Akayira ni inzira yagenewe abanyamaguru n'ibinyabiziga by'ibiziga bibiri.",
+    "category": "traffic_rules",
+    "difficulty": 1,
+    "has_image": false,
+    "is_active": true
+  },
+  {
+    "source_question_number": 3,
+    "question_text_kw": "Umurongo uciyemo uduce umenyesha ahegereye umurongo ushobora kuzuzwa n'uturanga gukata tw'ibara ryera utwo turanga cyerekezo tumenyesha:",
+    "option_a_kw": "Igisate cy'umuhanda abayobozi bagomba gukurikira",
+    "option_b_kw": "Ahegereye umurongo ukomeje",
+    "option_c_kw": "Igabanurwa ry'umubare w'ibisate by'umuhanda mu cyerekezo bajyamo",
+    "option_d_kw": "A na C nibyo",
+    "correct_answer": "c",
+    "explanation_kw": "Umurongo ucagaguye werekana igabanurwa ry'ibisate by'umuhanda.",
+    "category": "road_signs",
+    "difficulty": 2,
+    "has_image": false,
+    "is_active": true
+  }
+]
