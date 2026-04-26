@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { Check } from '@phosphor-icons/react'
 
 export default async function AccountPage() {
   const supabase = await createClient()
