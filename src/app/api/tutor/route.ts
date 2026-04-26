@@ -42,7 +42,7 @@ ${optionsText}
 Igisubizo cy'umunyeshuri: ${userAnswer?.toUpperCase()}) ${userAnswerText}
 Igisubizo cy'ukuri: ${correctAnswer?.toUpperCase()}) ${correctAnswerText}
 
-Sobanura impamvu igisubizo cy'ukuri ari "${correctAnswer?.toUpperCase()}) ${correctAnswerText}" — kandi impamvu igisubizo cy'umunyeshuri ("${userAnswer?.toUpperCase())") atari icyo.`
+Sobanura impamvu igisubizo cy'ukuri ari "${correctAnswer?.toUpperCase()}) ${correctAnswerText}" — kandi impamvu igisubizo cy'umunyeshuri ("${userAnswer?.toUpperCase()}") atari icyo.`
     : `Question: ${question}
 
 Options:
