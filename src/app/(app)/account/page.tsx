@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Check } from '@phosphor-icons/react'
+import SubscriptionStatus from '@/components/ui/SubscriptionStatus'
 
 export default async function AccountPage() {
   const supabase = await createClient()
@@ -35,10 +35,7 @@ export default async function AccountPage() {
           <div className="border-t border-divider my-1" />
           <p className="text-[13px] text-body">Ubwishingizi</p>
           <div className="flex items-center justify-between">
-            <span className={`font-semibold text-[15px] flex items-center gap-2 ${isPaid ? 'text-success' : 'text-body'}`}>
-              {isPaid && <Check size={16} weight="bold" />}
-              {isPaid ? `${profile?.subscription_tier}` : 'Free tier'}
-            </span>
+            <SubscriptionStatus isPaid={isPaid} tier={profile?.subscription_tier || 'Free tier'} />
             {isPaid && profile?.subscription_expires_at && (
               <span className="text-[12px] text-body">
                 {new Date(profile.subscription_expires_at).toLocaleDateString()}
