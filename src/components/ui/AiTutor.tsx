@@ -25,13 +25,15 @@ export default function AiTutor({ question, userAnswer, language }: AiTutorProps
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          question_text: question.question_text_kw,
-          option_a: question.option_a_kw,
-          option_b: question.option_b_kw,
-          option_c: question.option_c_kw,
-          option_d: question.option_d_kw,
-          correct_answer: question.correct_answer,
-          user_answer: userAnswer,
+          question: question.question_text_kw,
+          userAnswer,
+          correctAnswer: question.correct_answer,
+          options: {
+            a: question.option_a_kw,
+            b: question.option_b_kw,
+            c: question.option_c_kw,
+            d: question.option_d_kw,
+          },
           language,
         }),
       })
