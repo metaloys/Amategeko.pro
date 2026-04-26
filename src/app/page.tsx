@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { ClipboardText } from '@phosphor-icons/react'
 
 export default function LandingPage() {
   return (
@@ -24,7 +27,7 @@ export default function LandingPage() {
 
         {/* Feature card */}
         <div className="w-full bg-brand-light rounded-2xl p-6 text-center">
-          <p className="text-2xl mb-2">📋</p>
+          <div className="flex justify-center mb-2"><ClipboardText size={40} weight="bold" color="#1A56A0" /></div>
           <p className="font-semibold text-dark text-[20px]">
             433 Official Questions
           </p>

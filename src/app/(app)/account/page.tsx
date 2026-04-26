@@ -34,8 +34,9 @@ export default async function AccountPage() {
           <div className="border-t border-divider my-1" />
           <p className="text-[13px] text-body">Ubwishingizi</p>
           <div className="flex items-center justify-between">
-            <span className={`font-semibold text-[15px] ${isPaid ? 'text-success' : 'text-body'}`}>
-              {isPaid ? `✓ ${profile?.subscription_tier}` : 'Free tier'}
+            <span className={`font-semibold text-[15px] flex items-center gap-2 ${isPaid ? 'text-success' : 'text-body'}`}>
+              {isPaid && <Check size={16} weight="bold" />}
+              {isPaid ? `${profile?.subscription_tier}` : 'Free tier'}
             </span>
             {isPaid && profile?.subscription_expires_at && (
               <span className="text-[12px] text-body">

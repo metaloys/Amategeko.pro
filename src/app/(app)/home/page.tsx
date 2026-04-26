@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { PencilSimple, ClipboardText } from '@phosphor-icons/react'
 
 export default async function HomePage() {
   const supabase = await createClient()
@@ -21,12 +22,12 @@ export default async function HomePage() {
         {/* Quick start cards */}
         <div className="grid grid-cols-2 gap-3">
           <Link href="/practice" className="bg-white rounded-[16px] p-4 flex flex-col gap-2 shadow-sm border border-divider hover:shadow-md transition-shadow">
-            <span className="text-2xl">✏️</span>
+            <PencilSimple size={32} weight="bold" color="#1A56A0" />
             <span className="font-semibold text-dark text-[15px]">Kwiga</span>
             <span className="text-body text-[12px]">Practice Mode</span>
           </Link>
           <Link href="/exam" className="bg-white rounded-[16px] p-4 flex flex-col gap-2 shadow-sm border border-divider hover:shadow-md transition-shadow">
-            <span className="text-2xl">📋</span>
+            <ClipboardText size={32} weight="bold" color="#1A56A0" />
             <span className="font-semibold text-dark text-[15px]">Ikizamini</span>
             <span className="text-body text-[12px]">Mock Exam</span>
           </Link>

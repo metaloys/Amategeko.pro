@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { Check } from '@phosphor-icons/react'
 import type { Question } from '@/types/database'
+import AiTutor from '@/components/ui/AiTutor'
 
 type AnswerOption = 'a' | 'b' | 'c' | 'd'
 
@@ -154,13 +156,22 @@ export default function PracticePage() {
         {/* Explanation — appears after answer */}
         {answerState.revealed && question.explanation_kw && (
           <div className="mt-4 p-4 bg-success-light border border-success rounded-[12px]">
-            <p className="text-success text-[13px] font-semibold mb-1">
-              ✓ Igisubizo cy'ukuri: {question.correct_answer.toUpperCase()}
+            <p className="text-success text-[13px] font-semibold mb-1 flex items-center gap-2">
+              <Check size={14} weight="bold" /> Igisubizo cy'ukuri: {question.correct_answer.toUpperCase()}
             </p>
             <p className="text-dark text-[14px] leading-[1.5]">
               {question.explanation_kw}
             </p>
           </div>
+        )}
+
+        {/* AI Tutor — appears only on wrong answers */}
+        {answerState.revealed && answerState.selected && (
+          <AiTutor
+            question={question}
+            userAnswer={answerState.selected}
+            language="kw"
+          />
         )}
       </div>
 

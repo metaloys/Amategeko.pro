@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { Fire, Check, X } from '@phosphor-icons/react'
 
 type Session = {
   id: string
@@ -79,11 +80,14 @@ export default function ProgressPage() {
           {[
             { label: 'Ibizamini Wakoze', value: sessions.length },
             { label: 'Amanota y\'Wagize', value: `${avgScore}%` },
-            { label: 'Imyitozo Wakoze🔥', value: `${profile.current_streak_days}` },
+            { label: 'Imyitozo Wakoze', value: `${profile.current_streak_days}`, icon: Fire },
           ].map((stat) => (
             <div key={stat.label} className="bg-white rounded-2xl p-3 text-center border border-divider">
               <p className="text-[20px] font-bold text-dark">{stat.value}</p>
-              <p className="text-[11px] text-body mt-0.5">{stat.label}</p>
+              <p className="text-[11px] text-body mt-0.5 flex items-center justify-center gap-1">
+                {stat.icon && <stat.icon size={12} weight="bold" color="#F0A500" />}
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
@@ -146,10 +150,18 @@ export default function ProgressPage() {
               >
                 <div>
                   <p className={cn(
-                    'font-semibold text-[15px]',
+                    'font-semibold text-[15px] flex items-center gap-2',
                     session.passed ? 'text-success' : 'text-error'
                   )}>
-                    {session.passed ? '✓ WARAGITSINZE' : '✗ WARAGITSINZWE'}
+                    {session.passed ? (
+                      <>
+                        <Check size={16} weight="bold" /> WARAGITSINZE
+                      </>
+                    ) : (
+                      <>
+                        <X size={16} weight="bold" /> WARAGITSINZWE
+                      </>
+                    )}
                   </p>
                   <p className="text-body text-[12px] mt-0.5">
                     {new Date(session.completed_at).toLocaleDateString('en-GB', {

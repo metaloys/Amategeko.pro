@@ -3,6 +3,7 @@
 import { Suspense, useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useSearchParams, useRouter } from 'next/navigation'
+import { X, Hourglass, Check } from '@phosphor-icons/react'
 import type { Profile } from '@/types/database'
 
 const PLANS = [
@@ -50,9 +51,9 @@ function SubscriptionContent() {
 
     const payment = searchParams.get('payment')
     if (payment === 'failed') {
-      setStatusMessage('❌ Kwishyura byanze. Ongera ugerageze.')
+      setStatusMessage('Kwishyura byanze. Ongera ugerageze.')
     } else if (payment === 'pending') {
-      setStatusMessage('⏳ Kwishyura byagenze neza. Konti yawe iri gutegurwa...')
+      setStatusMessage('Kwishyura byagenze neza. Konti yawe iri gutegurwa...')
       // Poll for subscription activation (webhook may be delayed)
       const interval = setInterval(async () => {
         const { data } = await supabase
@@ -61,7 +62,7 @@ function SubscriptionContent() {
           .single()
         if (data?.subscription_tier !== 'free') {
           clearInterval(interval)
-          setStatusMessage('✅ Konti yawe yifunguye! Ugomba gutangira.')
+          setStatusMessage('Konti yawe yifunguye! Ugomba gutangira.')
           loadProfile()
         }
       }, 3000)
@@ -99,7 +100,7 @@ function SubscriptionContent() {
       const data = await res.json()
 
       if (!res.ok || !data.payment_url) {
-        setStatusMessage('❌ Ntibishoboye gutangira. Ongera ugerageze.')
+        setStatusMessage('Ntibishoboye gutangira. Ongera ugerageze.')
         setLoading(false)
         return
       }
@@ -107,7 +108,7 @@ function SubscriptionContent() {
       // Redirect to Flutterwave hosted checkout
       window.location.href = data.payment_url
     } catch {
-      setStatusMessage('❌ Ikibazo cy\'intego. Ongera ugerageze.')
+      setStatusMessage('Ikibazo cy\'intego. Ongera ugerageze.')
       setLoading(false)
     }
   }
@@ -140,8 +141,8 @@ function SubscriptionContent() {
         {/* Current status */}
         {isPaid && (
           <div className="bg-success-light border border-success rounded-2xl p-4">
-            <p className="text-success font-semibold text-[15px]">
-              ✓ Konti yawe yifunguye
+            <p className="text-success font-semibold text-[15px] flex items-center gap-2">
+              <Check size={18} weight="bold" /> Konti yawe yifunguye
             </p>
             <p className="text-body text-[13px] mt-1">
               Plan: {profile?.subscription_tier} | Irangira:{' '}
@@ -155,7 +156,10 @@ function SubscriptionContent() {
         )}
 
         {statusMessage && (
-          <div className="bg-brand-light rounded-xl p-4">
+          <div className="bg-brand-light rounded-xl p-4 flex items-start gap-3">
+            {statusMessage.includes('Kwishyura byanze') && <X size={20} weight="bold" color="#C0392B" />}
+            {statusMessage.includes('Kwishyura byagenze') && <Hourglass size={20} weight="bold" color="#F0A500" />}
+            {statusMessage.includes('yifunguye') && <Check size={20} weight="bold" color="#1A7A4A" />}
             <p className="text-dark text-[14px]">{statusMessage}</p>
           </div>
         )}
@@ -189,8 +193,8 @@ function SubscriptionContent() {
             </div>
             <div className="flex flex-col gap-1">
               {plan.features.map((f, i) => (
-                <p key={i} className="text-body text-[13px]">
-                  ✓ {f}
+                <p key={i} className="text-body text-[13px] flex items-center gap-2">
+                  <Check size={14} weight="bold" color="#1A7A4A" /> {f}
                 </p>
               ))}
             </div>

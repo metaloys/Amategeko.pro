@@ -3,13 +3,14 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { House, PencilSimple, ClipboardText, ChartBar, User } from '@phosphor-icons/react'
 
 const TABS = [
-  { href: '/home', label: 'Ahabanza', icon: '🏠' },
-  { href: '/practice', label: 'Kwiga', icon: '✏️' },
-  { href: '/exam', label: 'Ikizamini', icon: '📋' },
-  { href: '/progress', label: 'Imibare', icon: '📊' },
-  { href: '/account', label: 'Konti', icon: '👤' },
+  { href: '/home', label: 'Ahabanza', icon: House },
+  { href: '/practice', label: 'Kwiga', icon: PencilSimple },
+  { href: '/exam', label: 'Ikizamini', icon: ClipboardText },
+  { href: '/progress', label: 'Imibare', icon: ChartBar },
+  { href: '/account', label: 'Konti', icon: User },
 ]
 
 export default function BottomNav() {
@@ -29,7 +30,7 @@ export default function BottomNav() {
                 isActive ? 'text-brand-primary' : 'text-[#AAAAAA]'
               )}
             >
-              <span className="text-[20px] leading-none">{tab.icon}</span>
+              <tab.icon size={20} weight="bold" />
               <span className={cn(
                 'text-[10px] leading-none',
                 isActive ? 'font-semibold text-brand-primary' : 'font-normal text-[#AAAAAA]'

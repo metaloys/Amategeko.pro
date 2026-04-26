@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
+import { EnvelopeSimple, Warning } from '@phosphor-icons/react'
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('')
@@ -45,7 +46,7 @@ export default function RegisterPage() {
     return (
       <main className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-[480px] text-center flex flex-col gap-6">
-          <div className="text-5xl">📧</div>
+          <div className="flex justify-center"><EnvelopeSimple size={64} weight="bold" color="#1A56A0" /></div>
           <h2 className="text-[22px] font-bold text-dark">Reba imeyili yawe</h2>
           <p className="text-[16px] text-dark">
             Twohereje link kuri <strong>{email}</strong>.
@@ -104,7 +105,7 @@ export default function RegisterPage() {
           </div>
 
           {error && (
-            <p className="text-[13px]" style={{color:'#C0392B'}}>⚠ {error}</p>
+            <p className="text-[13px] flex items-center gap-2" style={{color:'#C0392B'}}><Warning size={16} weight="bold" /> {error}</p>
           )}
 
           <button

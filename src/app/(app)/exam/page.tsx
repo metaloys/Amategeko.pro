@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { ClipboardText, Confetti, Books, Check, X, Clock, ArrowLeft, ArrowRight } from '@phosphor-icons/react'
 import type { Question, AnswerOption } from '@/types/database'
 
 type ExamState = 'loading' | 'ready' | 'active' | 'submitting' | 'results'
@@ -126,7 +127,7 @@ export default function ExamPage() {
           </button>
 
           <div className="bg-brand-light rounded-2xl p-6 text-center flex flex-col gap-3">
-            <span className="text-4xl">📋</span>
+            <div className="flex justify-center"><ClipboardText size={48} weight="bold" color="#1A56A0" /></div>
             <h1 className="text-[22px] font-bold text-dark">Ikizamini — Mock Exam</h1>
             <p className="text-body text-[14px]">
               Ibibazo: {questions.length} | Igihe: 20 min
@@ -183,7 +184,13 @@ export default function ExamPage() {
               backgroundColor: passed ? '#E6F4EC' : '#FDEDEC',
             }}
           >
-            <span className="text-4xl">{passed ? '🎉' : '📚'}</span>
+            <div className="flex justify-center">
+              {passed ? (
+                <Confetti size={48} weight="bold" color="#1A7A4A" />
+              ) : (
+                <Books size={48} weight="bold" color="#C0392B" />
+              )}
+            </div>
             <p
               className="text-[28px] font-bold"
               style={{ color: passed ? '#1A7A4A' : '#C0392B' }}
@@ -191,10 +198,18 @@ export default function ExamPage() {
               {results.score_percent}%
             </p>
             <p
-              className="text-[18px] font-semibold"
+              className="text-[18px] font-semibold flex items-center justify-center gap-2"
               style={{ color: passed ? '#1A7A4A' : '#C0392B' }}
             >
-              {passed ? '✓ WATSINZE!' : '✗ WATSINZWE'}
+              {passed ? (
+                <>
+                  <Check size={20} weight="bold" /> WATSINZE!
+                </>
+              ) : (
+                <>
+                  <X size={20} weight="bold" /> WATSINZWE
+                </>
+              )}
             </p>
             <p className="text-body text-sm">
               {passed ? 'You Passed!' : 'Keep Practicing!'}
@@ -252,6 +267,35 @@ export default function ExamPage() {
             })}
           </div>
 
+          {!results.passed && (
+            <div style={{
+              padding: '16px',
+              backgroundColor: '#FFF8E6',
+              borderRadius: '12px',
+              border: '1.5px solid #F0A500',
+            }}>
+              <p style={{ fontSize: '14px', fontWeight: '700', color: '#1A1A1A', margin: '0 0 4px 0' }}>
+                🎓 Kwiga na Umwarimu w'AI
+              </p>
+              <p style={{ fontSize: '13px', color: '#555', margin: '0 0 12px 0' }}>
+                Jya mu Kwiga — kanda ku gisubizo kitari cyo kugira ngo umwarimu akusobanurire.
+              </p>
+              <a href="/practice" style={{
+                display: 'block',
+                textAlign: 'center',
+                padding: '12px',
+                backgroundColor: '#F0A500',
+                color: 'white',
+                borderRadius: '10px',
+                fontSize: '14px',
+                fontWeight: '600',
+                textDecoration: 'none',
+              }}>
+                Tangira Kwiga →
+              </a>
+            </div>
+          )}
+
           <button
             onClick={() => router.push('/exam')}
             style={{
@@ -297,7 +341,7 @@ export default function ExamPage() {
           </span>
           {/* Timer */}
           <span
-            className="font-bold text-[16px] tabular-nums"
+            className="font-bold text-[16px] tabular-nums flex items-center gap-1"
             style={{
               color: isTimeUrgent
                 ? '#C0392B'
@@ -307,7 +351,7 @@ export default function ExamPage() {
               animation: isTimeUrgent ? 'pulse 1s infinite' : 'none',
             }}
           >
-            ⏱ {formatTime(timeLeft)}
+            <Clock size={16} weight="bold" /> {formatTime(timeLeft)}
           </span>
         </div>
         <div className="w-full h-[6px] bg-divider rounded-full overflow-hidden">
@@ -394,16 +438,16 @@ export default function ExamPage() {
                     examState === 'submitting' ? 'not-allowed' : 'pointer',
                   color: examState === 'submitting' ? '#888888' : '#FFFFFF',
                 }}
-                className="flex-1 font-semibold text-[14px] h-[44px] rounded-[10px]"
+                className="flex-1 font-semibold text-[14px] h-[44px] rounded-[10px] flex items-center justify-center gap-1"
               >
-                {examState === 'submitting' ? 'Tegereza...' : 'Soza Ikizamini ✓'}
+                {examState === 'submitting' ? 'Tegereza...' : <><Check size={18} weight="bold" /> Soza Ikizamini</>}
               </button>
             )}
           </div>
-          <p className="text-center text-[12px] text-body">
+          <p className="text-center text-[12px] text-body flex items-center justify-center gap-1">
             {unansweredCount > 0
               ? `Ibibazo ${unansweredCount} utarasubiza`
-              : '✓ Ibibazo byose wabisubije'}
+              : <><Check size={14} weight="bold" /> Ibibazo byose wabisubije</>}
           </p>
         </div>
       </div>
